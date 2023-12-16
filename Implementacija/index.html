@@ -105,7 +105,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-lg-6">
-                        <div class="banner-content">
+                        <div class="banner-content" style="align-items: center; align-items: center;">
                             <h1>Natenane</h1>
                             <h4>Where every ticket gives back</h4>
                         </div>
@@ -123,8 +123,11 @@
                                 <div class="col-xl-4 col-lg-4 col-md-6 d-xl-flex d-lg-flex d-md-block align-items-center">
                                     <div class="promo-video">
                                         <div class="part-icon">
-                                            <a class="play-button venobox mfp-iframe" href="https://www.youtube.com/embed/u2ajINXyk4E?si=lUAK1WmJqgHSOiqp"><i class="fas fa-play"></i></a>
-                                        </div>
+                                            <div class="video-container" id="videoContainer">
+                                               <iframe width="560" height="315" src="https://www.youtube.com/embed/u2ajINXyk4E?si=lUAK1WmJqgHSOiqp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                            </div>
+                                            <a class="play-button" href="https://www.youtube.com/embed/u2ajINXyk4E?si=lUAK1WmJqgHSOiqp" id="playButton"><i class="fas fa-play"></i></a>
+                                         </div>
                                         <div class="part-text">
                                             <h3>promo videos</h3>
                                             <span class="intro">Pogledajte promo video</span>
@@ -132,6 +135,26 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Initialize Magnific Popup -->
+                                <script>
+                                    $(document).ready(function () {
+                                    $('#playButton').magnificPopup({
+                                        items: {
+                                        src: $('#videoContainer') // Use the video container as the source
+                                        },
+                                        type: 'inline',
+                                        callbacks: {
+                                        open: function () {
+                                            $('#videoContainer').show(); // Show the video container when the popup opens
+                                        },
+                                        close: function () {
+                                            $('#videoContainer').hide(); // Hide the video container when the popup closes
+                                        }
+                                        }
+                                    });
+                                });
+                                </script>
+
                                 <div class="col-xl-4 col-lg-4 col-md-6 d-xl-flex d-lg-flex d-md-flex align-items-center">
                                     <div class="banner-buttons">
                                         <a href="#">Kupi kartu</a>
