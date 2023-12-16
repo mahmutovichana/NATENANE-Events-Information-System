@@ -25,6 +25,18 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- responsive -->
     <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Include the Magnific Popup library -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+
+   <style>
+    .video-container {
+       display: none; /* Initially hide the video container */
+    }
+ </style>
 </head>
 
     <body>
@@ -113,20 +125,44 @@
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-6 d-xl-block d-lg-block d-md-none">
                                     <div class="part-img">
-                                        <img src="assets/img/banner-bottom-img.jpg" alt="">
+                                        <img src="assets/img/krcko2.jpg" alt="">
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-6 d-xl-flex d-lg-flex d-md-block align-items-center">
                                     <div class="promo-video">
                                         <div class="part-icon">
-                                            <a class="play-button venobox mfp-iframe" href="https://www.youtube.com/watch?v=AnH_tVjXC5c"><i class="fas fa-play"></i></a>
-                                        </div>
+                                            <div class="video-container" id="videoContainer">
+                                               <iframe width="560" height="315" src="https://www.youtube.com/embed/u2ajINXyk4E?si=lUAK1WmJqgHSOiqp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                            </div>
+                                            <a class="play-button" href="https://www.youtube.com/embed/u2ajINXyk4E?si=lUAK1WmJqgHSOiqp" id="playButton"><i class="fas fa-play"></i></a>
+                                         </div>
                                         <div class="part-text">
                                             <h3>promo videos</h3>
                                             <span class="intro">Pogledajte promo video</span>
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <!-- Initialize Magnific Popup -->
+                                <script>
+                                    $(document).ready(function () {
+                                    $('#playButton').magnificPopup({
+                                        items: {
+                                        src: $('#videoContainer') // Use the video container as the source
+                                        },
+                                        type: 'inline',
+                                        callbacks: {
+                                        open: function () {
+                                            $('#videoContainer').show(); // Show the video container when the popup opens
+                                        },
+                                        close: function () {
+                                            $('#videoContainer').hide(); // Hide the video container when the popup closes
+                                        }
+                                        }
+                                    });
+                                });
+                                </script>
+
                                 <div class="col-xl-4 col-lg-4 col-md-6 d-xl-flex d-lg-flex d-md-flex align-items-center">
                                     <div class="banner-buttons">
                                         <a href="#">Kupi kartu</a>
@@ -152,7 +188,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-lg-8">
                         <div class="part-countdown">
-                            <div class="timer" data-date="29 April 2019 9:56:00 GMT+01:00">
+                            <div class="timer" data-date="26 December 2023 19:00:00 GMT+01:00">
                                 <div class="single-count">
                                     <span class="day"></span><span class="title">dana</span>
                                 </div>
