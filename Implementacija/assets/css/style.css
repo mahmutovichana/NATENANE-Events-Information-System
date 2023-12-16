@@ -31,6 +31,10 @@
   font-family: amrFont;
   src: url("../fonts/LeagueSpartan-Bold.ttf"); }
 
+body {
+  font-family: "Poppins";
+}
+
 /*==========================================
     section title
 ==========================================*/
@@ -1502,7 +1506,7 @@ ul {
             content: '\f067';
             font-size: 16px;
             line-height: 18px;
-            font-family: "Font Awesome 5 Free";
+            font-family: "Poppins";
             font-weight: 900;
             margin-top: -9px; }
           .faq .accordion .card .card-header h5 button.collapsed, .faq .accordion2 .card .card-header h5 button.collapsed {
