@@ -29,6 +29,16 @@
 
 <body>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const loggedInUsername = sessionStorage.getItem('loggedInUsername');
+    
+        if (loggedInUsername) {
+            document.getElementById('greeting').innerText = 'Zdravo, ' + loggedInUsername;
+        }
+    });
+    </script>
+
     <!-- preloader begin -->
     <div class="preloader">
         <div class="loader">
@@ -41,7 +51,7 @@
     <!-- header begin -->
     <div class="header">
         <div class="container">
-            <div class="row">
+            <div class="row" style="justify-content: flex-end;">
                 <div class="col-xl-4 col-lg-4 d-xl-flex d-lg-flex align-items-center">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-6 d-xl-block d-lg-block d-flex align-items-center">
@@ -72,17 +82,14 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="gallery.html">Galerija</a>
                                     </li>
-                                 <!--   <li class="nav-item">
-                                        <a class="nav-link" href="top-dj.html">Top DJ</a>
-                                    </li> -->
                                     <li class="nav-item">
                                         <a class="nav-link" href="schedule.html">Događaji</a>
                                     </li>
-                                  <li class="nav-item">
-                                        <a class="nav-link" href="blog-details.html">Prijava</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="login.html">Prijava</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="faq.html">Pomoć <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link active" href="faq.html">Pomoć</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="contact.html">Kontakt</a>
@@ -93,9 +100,11 @@
                                 </ul>
                             </div>
                         </nav>
-                    </div><br>
-                    <p style="margin: 0; color: #fff; font-family: Poppins;"><strong>Zdravo, Amna</strong></p>
+
+                    </div>
                 </div>
+                <p id="greeting" style="margin: 0; color: #fff; font-family: Poppins; text-align: right;"><strong></strong></p>
+
             </div>
         </div>
     </div>
@@ -126,7 +135,7 @@
                         <h2>Pomoć</h2>
                     </div>
                 </div>
-                      </div>
+            </div>
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="accordion" id="accordionExample">
@@ -139,11 +148,12 @@
                                         <br>na Natenane platformi?
                                 </h5>
                             </div>
-    
+
                             <div id="collapse1" class="collapse show" aria-labelledby="heading1"
                                 data-parent="#accordionExample">
                                 <div class="card-body">
-                                  Posjetite našu stranicu, odaberite željeni događaj, te slijedite jednostavne korake za rezervaciju karata.
+                                    Posjetite našu stranicu, odaberite željeni događaj, te slijedite jednostavne korake
+                                    za rezervaciju karata.
                                 </div>
                             </div>
                         </div>
@@ -152,13 +162,15 @@
                                 <h5>
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                         data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                       Da li postoji mogućnost povrata novca<br> za kupljene karte?
+                                        Da li postoji mogućnost povrata novca<br> za kupljene karte?
                                     </button>
                                 </h5>
                             </div>
-                            <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+                            <div id="collapse2" class="collapse" aria-labelledby="heading2"
+                                data-parent="#accordionExample">
                                 <div class="card-body">
-                                    Politika povrata novca zavisi od organizatora događaja. Detaljne informacije o povratu možete pronaći prilikom procesa kupovine ili na našoj stranici.
+                                    Politika povrata novca zavisi od organizatora događaja. Detaljne informacije o
+                                    povratu možete pronaći prilikom procesa kupovine ili na našoj stranici.
                                 </div>
                             </div>
                         </div>
@@ -171,9 +183,11 @@
                                     </button>
                                 </h5>
                             </div>
-                            <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+                            <div id="collapse3" class="collapse" aria-labelledby="heading3"
+                                data-parent="#accordionExample">
                                 <div class="card-body">
-                                   Posjetite našu stranicu "Kontakt" gdje možete pronaći informacije o korisničkoj podršci putem e-maila ili telefona. Naš tim je tu da Vam pomogne.
+                                    Posjetite našu stranicu "Kontakt" gdje možete pronaći informacije o korisničkoj
+                                    podršci putem e-maila ili telefona. Naš tim je tu da Vam pomogne.
                                 </div>
                             </div>
                         </div>
@@ -190,25 +204,28 @@
                                     </button>
                                 </h5>
                             </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent=".accordion2">
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                data-parent=".accordion2">
                                 <div class="card-body">
-                                   Ne, nakon potvrde rezervacije, cijene karata ostaju nepromijenjene. Bilo kakve izmjene ili otkazivanje podliježu politici organizatora događaja.
+                                    Ne, nakon potvrde rezervacije, cijene karata ostaju nepromijenjene. Bilo kakve
+                                    izmjene ili otkazivanje podliježu politici organizatora događaja.
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="card">
                             <div class="card-header" id="headingFive">
                                 <h5>
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                         data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                       Imate li posebne ponude za grupe?
+                                        Imate li posebne ponude za grupe?
                                     </button>
                                 </h5>
                             </div>
-                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent=".accordion2">
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                data-parent=".accordion2">
                                 <div class="card-body">
-                                   Da, nudimo posebne pakete i popuste. Kontaktirajte nas putem e-maila ili telefona.
+                                    Da, nudimo posebne pakete i popuste. Kontaktirajte nas putem e-maila ili telefona.
                                 </div>
                             </div>
                         </div>
@@ -217,19 +234,22 @@
                                 <h5>
                                     <button class="btn btn-link" type="button" data-toggle="collapse"
                                         data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">
-                                       Kako mogu promijeniti detalje svoje rezervacije,<br>kao što su broj karata ili sjedala?
+                                        Kako mogu promijeniti detalje svoje rezervacije,<br>kao što su broj karata ili
+                                        sjedala?
                                     </button>
                                 </h5>
                             </div>
-    
+
                             <div id="collapsesix" class="collapse show" aria-labelledby="headingsix"
                                 data-parent=".accordion2">
                                 <div class="card-body">
-                                  Nakon što rezervišete karte, možete kontaktirati naš tim korisničke podrške putem e-maila ili telefona kako biste zatražili izmjene u detaljima rezervacije. Molimo Vas da nas kontaktirate što prije kako bismo Vam mogli pomoći.
+                                    Nakon što rezervišete karte, možete kontaktirati naš tim korisničke podrške putem
+                                    e-maila ili telefona kako biste zatražili izmjene u detaljima rezervacije. Molimo
+                                    Vas da nas kontaktirate što prije kako bismo Vam mogli pomoći.
                                 </div>
                             </div>
                         </div>
-    
+
                     </div>
                 </div>
             </div>
@@ -364,41 +384,9 @@
             <div class="row">
                 <div class="col-xl-5 col-lg-4 d-xl-flex d-lg-flex align-items-center">
                     <div class="logo">
-                        <a href="index-2.html"><img src="assets/img/logo.png" alt=""></a>
+                        <a href="index.html"><img src="assets/img/logo.png" alt=""></a>
                     </div>
                 </div>
-              <!--  <div class="col-xl-7 col-lg-8">
-                    <div class="footer-menu">
-                        <nav class="navbar navbar-expand-lg">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="about.html">About <span class="sr-only">(current)</span></a>
-                                </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="event.html">Event</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="gallery.html">Galerija</a>
-                                </li>
-                               <li class="nav-item">
-                                    <a class="nav-link" href="top-dj.html">Top DJ</a>
-                                </li> 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="schedule.html">Događaji</a>
-                                </li>
-                               <li class="nav-item">
-                                    <a class="nav-link" href="blog-details.html">Prijava</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="faq.html">Faq</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Kontakt</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>

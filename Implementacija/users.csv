@@ -1,0 +1,4 @@
+username,password,name,surname,email,bankAccount,role
+amarmahmutovic,$2b$10$QgHGGvTsZMXjJLRGkSjOOuyz/P6tEbILtfDqY1WUUgGoiILGMOC86,Amar,Mahmutović,amahmutovic@etf.unsa.ba,342478675,uposlenik
+azunic3,$2b$10$XnMrD6HnYdvoObntiGpkPO2DnHLi2cUcJmy5jhx7AZ51wfMgxu0PC,Azra,Žunić,azunic3@etf.unsa.ba,23456789,clan
+nmiralem,$2b$10$nX.TiDAZzVOz3Bum7eYJmOCLOrSak2PKwkxfNQ71/ql89330Ttkny,Nadina,Miralem,nmiralem1@etf.unsa.ba,25946081792,clan

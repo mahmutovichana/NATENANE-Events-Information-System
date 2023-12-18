@@ -35,6 +35,112 @@
 
 <body>
 
+    <script>
+        const loggedInUsername = sessionStorage.getItem('loggedInUsername');
+        document.addEventListener('DOMContentLoaded', function () {
+
+            if (loggedInUsername) {
+                document.getElementById('greeting').innerText = 'Zdravo, ' + loggedInUsername;
+                loadUserType();
+            }
+        });
+
+        function getUserTypeFromCSV(csvData) {
+            var lines = csvData.split("\n");
+            var header = lines[0].split(",");
+            var roleIndex = header.indexOf("role");
+
+            var userType;
+            for (var i = 1; i < lines.length; i++) {
+                var data = lines[i].split(",");
+                var username = data[0];
+                if (username === loggedInUsername) {
+                    userType = data[roleIndex];
+                    break;
+                }
+            }
+            return userType;
+        }
+
+        function showUserContent(isRegularUser) {
+            const reservationsSection = document.getElementById('reservationsSection');
+            const purchasesSection = document.getElementById('purchasesSection');
+            const pointsSection = document.getElementById('pointsSection');
+            const profileDetailsSection = document.getElementById('profileDetailsSection');
+            const reportsSection = document.getElementById('reportsSection');
+
+            reservationsSection.style.display = isRegularUser ? 'block' : 'none';
+            purchasesSection.style.display = isRegularUser ? 'block' : 'none';
+            pointsSection.style.display = isRegularUser ? 'block' : 'none';
+            profileDetailsSection.style.display = 'block';
+            reportsSection.style.display = isRegularUser ? 'none' : 'block';
+        }
+
+        function loadUserType() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var csvData = xhr.responseText;
+                    var userType = getUserTypeFromCSV(csvData);
+
+                    if (userType === "clan") {
+                        showUserContent(true);
+                        loadUserProfileDetails();
+                    } else if (userType === "uposlenik") {
+                        showUserContent(false);
+                        loadUserProfileDetails();
+                    }
+                }
+            };
+            xhr.open("GET", "users.csv", true);
+            xhr.send();
+        }
+
+        function loadUserProfileDetails() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var csvData = xhr.responseText;
+                    var userDetails = getUserDetailsFromCSV(csvData);
+                    displayUserProfileDetails(userDetails);
+                }
+            };
+            xhr.open("GET", "users.csv", true);
+            xhr.send();
+        }
+
+        function getUserDetailsFromCSV(csvData) {
+            var lines = csvData.split("\n");
+            var header = lines[0].split(",");
+            var details = {};
+
+            for (var i = 1; i < lines.length; i++) {
+                var data = lines[i].split(",");
+                var username = data[0];
+
+                if (username === loggedInUsername) {
+                    details = {
+                        name: data[2],
+                        surname: data[3],
+                        email: data[4]
+                    };
+                    break;
+                }
+            }
+
+            return details;
+        }
+
+        function displayUserProfileDetails(userDetails) {
+            var profileDetails = document.getElementById('profileDetails');
+            profileDetails.innerHTML = `
+                <p>Ime: ${userDetails.name}</p>
+                <p>Prezime: ${userDetails.surname}</p>
+                <p>Email: ${userDetails.email}</p>
+            `;
+        }
+    </script>
+
     <!-- preloader begin -->
     <div class="preloader">
         <div class="loader">
@@ -47,7 +153,7 @@
     <!-- header begin -->
     <div class="header">
         <div class="container">
-            <div class="row">
+            <div class="row" style="justify-content: flex-end;">
                 <div class="col-xl-4 col-lg-4 d-xl-flex d-lg-flex align-items-center">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-6 d-xl-block d-lg-block d-flex align-items-center">
@@ -64,43 +170,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-12 col-lg-12 d-xl-flex d-lg-flex justify-content-end align-items-center">
-                    <div class="col-xl-8 col-lg-8">
-                        <div class="mainmenu">
-                            <nav class="navbar navbar-expand-lg">
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <ul class="navbar-nav mr-auto">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="index.html">Početna</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="about.html">O nama</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="gallery.html">Galerija</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="schedule.html">Događaji</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link " href="blog-details.html">Prijava</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="faq.html">Pomoć</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="contact.html">Kontakt</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="myProfile.html">Profil<span   class="sr-only">(current)</span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                    </div><br>
-                    <p style="margin: 0; color: #fff; font-family: Poppins;"><strong>Zdravo, Amna</strong></p>
+                <div class="col-xl-8 col-lg-8">
+                    <div class="mainmenu">
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="index.html">Početna</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="about.html">O nama</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="gallery.html">Galerija</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="schedule.html">Događaji</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="login.html">Prijava</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="faq.html">Pomoć</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact.html">Kontakt</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="myProfile.html">Profil</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+
+                    </div>
                 </div>
+                <p id="greeting" style="margin: 0; color: #fff; font-family: Poppins; text-align: right;">
+                    <strong></strong></p>
+
             </div>
         </div>
     </div>
@@ -123,71 +230,80 @@
     <!-- breadcrump end -->
 
     <!-- Izbor izvještaja -->
-<div class="ticket-price">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-8">
-                <div class="section-title text-center">
-                    <h2>Izvještaji</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Mesečni izvještaj -->
-            <div class="col-md-4">
-                <div class="single-ticket-price">
-                    <div class="part-feature">
-                        <h3>Mjesečni</h3>
-                        <ul>
-                            <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Detaljan mesečni izvještaj</span></li>
-                            <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Podaci za cijeli mesec</span></li>
-                        </ul>
-                    </div>
-                    <div class="part-button">
-                        <a href="assets/pdfs/Mjesečni izvještaj OIS.pdf" download class="btn btn-primary">Preuzmi</a>
+    <div class="ticket-price" id="reportsSection">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-8">
+                    <div class="section-title text-center">
+                        <h2>Izvještaji</h2>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <!-- Mjesečni izvještaj -->
+                <div class="col-md-4">
+                    <div class="single-ticket-price">
+                        <div class="part-feature">
+                            <h3>Mjesečni</h3>
+                            <ul>
+                                <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Detaljan
+                                        mjesečni izvještaj</span></li>
+                                <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Podaci za
+                                        cijeli mjesec</span></li>
+                            </ul>
+                        </div>
+                        <div class="part-button">
+                            <a href="assets/pdfs/Mjesečni izvještaj OIS.pdf" download
+                                class="btn btn-primary">Preuzmi</a>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Sedmični izvještaj -->
-            <div class="col-md-4">
-                <div class="single-ticket-price">
-                    <div class="part-feature">
-                        <h3>Sedmični</h3>
-                        <ul>
-                            <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Sedmični izvještaj po događajima</span></li>
-                            <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Detalji za svaku sedmicu</span></li>
-                        </ul>
-                    </div>
-                    <div class="part-button">
-                        <a href="assets/pdfs/Sedmični izvještaj OIS.pdf" download class="btn btn-primary">Preuzmi</a>
+                <!-- Sedmični izvještaj -->
+                <div class="col-md-4">
+                    <div class="single-ticket-price">
+                        <div class="part-feature">
+                            <h3>Sedmični</h3>
+                            <ul>
+                                <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Sedmični
+                                        izvještaj po događajima</span></li>
+                                <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Detalji za
+                                        svaku sedmicu</span></li>
+                            </ul>
+                        </div>
+                        <div class="part-button">
+                            <a href="assets/pdfs/Sedmični izvještaj OIS.pdf" download
+                                class="btn btn-primary">Preuzmi</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Godišnji izvještaj -->
-            <div class="col-md-4">
-                <div class="single-ticket-price">
-                    <div class="part-feature">
-                        <h3>Godišnji</h3>
-                        <ul>
-                            <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Pregled godišnjih statistika</span></li>
-                            <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Sažetak za cijelu godinu</span></li>
-                        </ul>
-                    </div>
-                    <div class="part-button">
-                        <a href="assets/pdfs/Mjesečni izvještaj OIS.pdf" download class="btn btn-primary">Preuzmi</a>
+                <!-- Godišnji izvještaj -->
+                <div class="col-md-4">
+                    <div class="single-ticket-price">
+                        <div class="part-feature">
+                            <h3>Godišnji</h3>
+                            <ul>
+                                <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Pregled
+                                        godišnjih statistika</span></li>
+                                <li><span class="icon"><i class="fas fa-check"></i></span><span class="text">Sažetak za
+                                        cijelu godinu</span></li>
+                            </ul>
+                        </div>
+                        <div class="part-button">
+                            <a href="assets/pdfs/Mjesečni izvještaj OIS.pdf" download
+                                class="btn btn-primary">Preuzmi</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Kraj izbora izvještaja -->
+    <!-- Kraj izbora izvještaja -->
 
 
     <!-- Moje rezervacije begin -->
-    <div class="blog blog-details">
+    <div class="blog blog-details" id="reservationsSection">
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 col-lg-8">
@@ -225,7 +341,7 @@
     <!-- Moje rezervacije end -->
 
     <!-- Moje kupovine begin -->
-    <div class="blog blog-details">
+    <div class="blog blog-details" id="purchasesSection">
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 col-lg-8">
@@ -262,33 +378,28 @@
     <!-- Moje kupovine end -->
 
     <!-- Kartica za Trenutne bodove i Detalji profila begin -->
-<div class="blog blog-details">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-8 col-lg-8">
-                <!-- Kartica za Trenutne bodove -->
-                <div class="card-box">
-                    <h3>Trenutni bodovi</h3>
-                    <div class="card" style="background-color: transparent;">
-                        <div class="card-body">
-                            <div class="points">
-                                <span id="currentPoints">10</span>
+    <div class="blog blog-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8">
+                    <!-- Kartica za Trenutne bodove -->
+                    <div class="card-box" id="pointsSection">
+                        <h3>Trenutni bodovi</h3>
+                        <div class="card" style="background-color: transparent;">
+                            <div class="card-body">
+                                <div class="points">
+                                    <span id="currentPoints">10</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Kartica za Detalje profila -->
-                <div class="card-box">
-                    <h3>Detalji profila</h3>
-                    <div class="card" style="background-color: transparent;">
-                        <div class="card-body">
-                            <!-- Ovdje možete dodati informacije o profilu -->
-                            <div class="profile-details">
-                                <p>Ime: Amna</p>
-                                <p>Prezime: Prezimic</p>
-                                <p>Email: amna.prezimic@example.com</p>
-                                <!-- Dodajte ostale informacije prema potrebi -->
+                    <!-- Kartica za Detalje profila -->
+                    <div class="card-box" id="profileDetailsSection">
+                        <h3>Detalji profila</h3>
+                        <div class="card" style="background-color: transparent;">
+                            <div class="card-body" id="profileDetails">
+                                <!-- Ovdje će se dinamički prikazati informacije o korisniku -->
                             </div>
                         </div>
                     </div>
@@ -296,8 +407,7 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Kartica za Trenutne bodove i Detalji profila end -->
+    <!-- Kartica za Trenutne bodove i Detalji profila end -->
 
 
     <!-- footer begin -->
@@ -306,42 +416,9 @@
             <div class="row">
                 <div class="col-xl-5 col-lg-4 d-xl-flex d-lg-flex align-items-center">
                     <div class="logo">
-                        <a href="index-2.html"><img src="assets/img/logo.png" alt=""></a>
+                        <a href="index.html"><img src="assets/img/logo.png" alt=""></a>
                     </div>
                 </div>
-                <!-- <div class="col-xl-7 col-lg-8">
-                    <div class="footer-menu">
-                        <nav class="navbar navbar-expand-lg">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="about.html">About Us<span
-                                            class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="event.html">Event</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="gallery.html">Galerija</a>
-                                </li>
-                               <li class="nav-item">
-                                    <a class="nav-link" href="top-dj.html">Top DJ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="schedule.html">Događaji</a>
-                                </li>
-                              <li class="nav-item">
-                                    <a class="nav-link" href="blog-details.html">Prijava</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="faq.html">Faq</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Kontakt</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

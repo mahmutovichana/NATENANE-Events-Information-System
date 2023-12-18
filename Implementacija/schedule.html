@@ -29,6 +29,17 @@
 
 <body>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const loggedInUsername = sessionStorage.getItem('loggedInUsername');
+
+    if (loggedInUsername) {
+        document.getElementById('greeting').innerText = 'Zdravo, ' + loggedInUsername;
+    }
+});
+
+    </script>
+
     <!-- preloader begin -->
     <div class="preloader">
         <div class="loader">
@@ -37,67 +48,67 @@
         </div>
     </div>
     <!-- preloader end -->
-  <!-- header begin -->
-  <div class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-4 col-lg-4 d-xl-flex d-lg-flex align-items-center">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-6 d-xl-block d-lg-block d-flex align-items-center">
-                        <div class="logo">
-                            <a href="index.html"><img src="assets/img/logo.png" alt=""></a>
+
+    <!-- header begin -->
+    <div class="header">
+        <div class="container">
+            <div class="row" style="justify-content: flex-end;">
+                <div class="col-xl-4 col-lg-4 d-xl-flex d-lg-flex align-items-center">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-6 d-xl-block d-lg-block d-flex align-items-center">
+                            <div class="logo">
+                                <a href="index.html"><img src="assets/img/logo.png" alt=""></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-xl-none d-lg-none d-block col-6">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-bars"></i>
-                        </button>
+                        <div class="d-xl-none d-lg-none d-block col-6">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-8 col-lg-8">
-                <div class="mainmenu">
-                    <nav class="navbar navbar-expand-lg">
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Početna</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html">O nama</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="gallery.html">Galerija</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="schedule.html">Događaji<span class="sr-only">(current)</span></a>
-                                </li>
-                                
-                             <li class="nav-item">
-                                    <a class="nav-link" href="blog-details.html">Prijava</a>
-                                </li> 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="faq.html">Pomoć</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Kontakt</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="myProfile.html">Profil</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div><br>
-                <p style="margin: 0; color: #fff; font-family: Poppins;"><strong>Zdravo, Amna</strong></p>
+                <div class="col-xl-8 col-lg-8">
+                    <div class="mainmenu">
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="index.html">Početna</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="about.html">O nama</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="gallery.html">Galerija</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="schedule.html">Događaji</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="login.html">Prijava</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="faq.html">Pomoć</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact.html">Kontakt</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="myProfile.html">Profil</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+
+                    </div>
+                </div>
+                <p id="greeting" style="margin: 0; color: #fff; font-family: Poppins; text-align: right;"><strong></strong></p>
             </div>
         </div>
     </div>
-</div>
-<!-- header end -->
-
+    <!-- header end -->
 
     <!-- breadcrump begin -->
     <div class="breadcrump">
@@ -128,32 +139,36 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-                            aria-controls="v-pills-home" aria-selected="true">Muzika</a>
-                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-                            aria-controls="v-pills-profile" aria-selected="false">Kultura</a>
-                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
-                            aria-controls="v-pills-messages" aria-selected="false">Sport</span></a>
-                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-                            aria-controls="v-pills-settings" aria-selected="false">Kino</a>
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                            role="tab" aria-controls="v-pills-home" aria-selected="true">Muzika</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false">Kultura</a>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                            role="tab" aria-controls="v-pills-messages" aria-selected="false">Sport</span></a>
+                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
+                            role="tab" aria-controls="v-pills-settings" aria-selected="false">Kino</a>
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-9">
                     <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                            aria-labelledby="v-pills-home-tab">
+
                             <div id="accordion">
                                 <div class="card">
-                                    <div class="card-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="button">
+                                    <div class="card-header" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne" role="button">
                                         <div class="part-img">
                                             <img src="assets/img/jugoslovenka.jpg" alt="">
                                         </div>
                                         <div class="part-text">
                                             <h3>Jugoslovenka</h3>
-                                            <span class="time"><i class="fas fa-clock"></i> 22.12.2023</span> <span class="location"><i class="fas fa-globe"></i> Lokacija: Cinema Sloga, Sarajevo</span>
+                                            <span class="time"><i class="fas fa-clock"></i> 22.12.2023</span> <span
+                                                class="location"><i class="fas fa-globe"></i> Lokacija: Cinema Sloga,
+                                                Sarajevo</span>
                                         </div>
                                     </div>
-                            
+
                                     <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                         <div class="card-body">
                                             <p>Vrijeme: 22:00h</p><br>
@@ -162,13 +177,16 @@
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" role="button">
+                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                        aria-expanded="false" aria-controls="collapseTwo" role="button">
                                         <div class="part-img">
                                             <img src="assets/img/mirza_selimovic.jpeg" alt="">
                                         </div>
                                         <div class="part-text">
                                             <h3>Mirza Selimović</h3>
-                                            <span class="time"><i class="fas fa-clock"></i> 16.12.2023</span> <span class="location"><i class="fas fa-globe"></i> Lokacija: Aqua, Sarajevo</span>
+                                            <span class="time"><i class="fas fa-clock"></i> 16.12.2023</span> <span
+                                                class="location"><i class="fas fa-globe"></i> Lokacija: Aqua,
+                                                Sarajevo</span>
                                         </div>
                                     </div>
                                     <div id="collapseTwo" class="collapse" data-parent="#accordion">
@@ -179,13 +197,17 @@
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="button">
+                                    <div class="card-header collapsed" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                                        role="button">
                                         <div class="part-img">
                                             <img src="assets/img/jr.jpg" alt="">
                                         </div>
                                         <div class="part-text">
                                             <h3>Jelena Rozga</h3>
-                                            <span class="time"><i class="fas fa-clock"></i> 2.11.2024 </span> <span class="location"><i class="fas fa-globe"></i> Lokacija: Zetra - Juan A. Samaranch, Sarajevo</span>
+                                            <span class="time"><i class="fas fa-clock"></i> 2.11.2024 </span> <span
+                                                class="location"><i class="fas fa-globe"></i> Lokacija: Zetra - Juan A.
+                                                Samaranch, Sarajevo</span>
                                         </div>
                                     </div>
                                     <div id="collapseThree" class="collapse" data-parent="#accordion">
@@ -196,70 +218,86 @@
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour" role="button">
+                                    <div class="card-header" data-toggle="collapse" data-target="#collapseFour"
+                                        aria-expanded="true" aria-controls="collapseFour" role="button">
                                         <div class="part-img">
                                             <img src="assets/img/acoPejovic.jpg" alt="">
                                         </div>
                                         <div class="part-text">
                                             <h3>Aco Pejović</h3>
-                                            <span class="time"><i class="fas fa-clock"></i> 23.02.2024</span> <span class="location"><i class="fas fa-globe"></i> Lokacija: Hotel Vučko, Jahorina</span>
+                                            <span class="time"><i class="fas fa-clock"></i> 23.02.2024</span> <span
+                                                class="location"><i class="fas fa-globe"></i> Lokacija: Hotel Vučko,
+                                                Jahorina</span>
                                         </div>
                                     </div>
-                            
+
                                     <div id="collapseFour" class="collapse" data-parent="#accordion">
                                         <div class="card-body">
                                             <p>Vrijeme: 22:00h</p><br>
-                                            <button class="btn btn-primary" style="color: white;"><a href="event-details.html" style="color: white;">Kupi</a></button>
+                                            <button class="btn btn-primary" style="color: white;"><a
+                                                    href="event-details.html" style="color: white;">Kupi</a></button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                            aria-labelledby="v-pills-profile-tab">
                             <div id="accordion2">
                                 <div class="card">
-                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapse4" aria-expanded="false"
-                                        aria-controls="collapse4" role="button">
+                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapse4"
+                                        aria-expanded="false" aria-controls="collapse4" role="button">
                                         <div class="part-img">
                                             <img src="assets/img/macahills.jpg" alt="">
                                         </div>
                                         <div class="part-text">
                                             <h3>Kakva ti je žena takav ti je život</h3>
-                                            <span class="time"><i class="fas fa-clock"></i> 25.12.2023</span> <span class="location"><i class="fas fa-globe"></i> Lokacija: Hotel Hills, Sarajevo</span>
+                                            <span class="time"><i class="fas fa-clock"></i> 25.12.2023</span> <span
+                                                class="location"><i class="fas fa-globe"></i> Lokacija: Hotel Hills,
+                                                Sarajevo</span>
                                         </div>
                                     </div>
-                            
+
                                     <div id="collapse4" class="collapse" data-parent="#accordion2">
                                         <div class="card-body">
                                             <p>Vrijeme: 22:00h
-                                                <br>NAJPOSJEĆENIJA REGIONALNA PREDSTAVA 
+                                                <br>NAJPOSJEĆENIJA REGIONALNA PREDSTAVA
 
                                                 “KAKVA TI JE ŽENA TAKAV TI JE ŽIVOT”
-                                               
-                                               <br>
-                                               
-                                               Hit komedija Dragana Marinkovića Mace koju je odgledalo preko 100.000 posjetilaca u zemljama regije
-                                               
-                                               
-                                               Hit komedija „Kakva ti je žena, takav ti je život“, u izvedbi Dragana Marinkovića Mace.
-                                               
-                                               Ova predstava već par godina oduševljava publiku, a do suza je nasmijala već preko 100.000 posjetilaca širom regiona.
-                                               
-                                               Odgovore na vječna pitanja o odnosu između muškarca i žene, Dragan Marinković-Maca donosi na originalan i samo njemu svojstven način. Ova predstava će vas natjerati da razmislite dobro o sebi i svijetu koji vas okružuje.</p>
-                                               <br><button class="btn btn-primary">Kupi</button>
+
+                                                <br>
+
+                                                Hit komedija Dragana Marinkovića Mace koju je odgledalo preko 100.000
+                                                posjetilaca u zemljama regije
+
+
+                                                Hit komedija „Kakva ti je žena, takav ti je život“, u izvedbi Dragana
+                                                Marinkovića Mace.
+
+                                                Ova predstava već par godina oduševljava publiku, a do suza je nasmijala
+                                                već preko 100.000 posjetilaca širom regiona.
+
+                                                Odgovore na vječna pitanja o odnosu između muškarca i žene, Dragan
+                                                Marinković-Maca donosi na originalan i samo njemu svojstven način. Ova
+                                                predstava će vas natjerati da razmislite dobro o sebi i svijetu koji vas
+                                                okružuje.
+                                            </p>
+                                            <br><button class="btn btn-primary">Kupi</button>
                                         </div><br>
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header" data-toggle="collapse" data-target="#collapse5" aria-expanded="true"
-                                        aria-controls="collapse5" role="button">
+                                    <div class="card-header" data-toggle="collapse" data-target="#collapse5"
+                                        aria-expanded="true" aria-controls="collapse5" role="button">
                                         <div class="part-img">
                                             <img src="assets/img/SFHNY.jpg" alt="">
                                         </div>
                                         <div class="part-text">
                                             <h3>Novogodišnji koncert Sarajevske filharmonije</h3>
-                                            <span class="time"><i class="fas fa-clock"></i> 31.12.2023</span> <span class="location"><i class="fas fa-globe"></i> Lokacija: Narodno pozorište, Sarajevo</span>
+                                            <span class="time"><i class="fas fa-clock"></i> 31.12.2023</span> <span
+                                                class="location"><i class="fas fa-globe"></i> Lokacija: Narodno
+                                                pozorište, Sarajevo</span>
                                         </div>
                                     </div>
                                     <div id="collapse5" class="collapse show" data-parent="#accordion2">
@@ -267,20 +305,31 @@
                                             <p>
                                                 Vrijeme: 19:30h
                                                 <br>
-                                                Sarajevska filharmonija će, na kraju i ove kalendarske godine, održati svečani Novogodišnji koncert kojim će ispratiti staru i pozdraviti Novu godinu. Ovaj koncert sarajevskih Filharmoničara je upravo jedno od obilježja našeg grada na kojem se publici pruža jedinstveni ugođaj izvedbama atraktivnog i svečanog programa popularnih valcera, polki, uvertira, arija, dueta i sl. Kroz ovogodišnji program nas vodi maestroEVAN ALEXIS CHRIST izvedbama djela poznatih autora poput Verdija, Bizeta, Ginastere, Straussa, Hačaturjana i dr. Gosti solisti su sopranisticaRENISA LACKA i tenor JENISH YSMANOV.</p>
-                                                <br><button class="btn btn-primary">Kupi</button>
+                                                Sarajevska filharmonija će, na kraju i ove kalendarske godine, održati
+                                                svečani Novogodišnji koncert kojim će ispratiti staru i pozdraviti Novu
+                                                godinu. Ovaj koncert sarajevskih Filharmoničara je upravo jedno od
+                                                obilježja našeg grada na kojem se publici pruža jedinstveni ugođaj
+                                                izvedbama atraktivnog i svečanog programa popularnih valcera, polki,
+                                                uvertira, arija, dueta i sl. Kroz ovogodišnji program nas vodi
+                                                maestroEVAN ALEXIS CHRIST izvedbama djela poznatih autora poput Verdija,
+                                                Bizeta, Ginastere, Straussa, Hačaturjana i dr. Gosti solisti su
+                                                sopranisticaRENISA LACKA i tenor JENISH YSMANOV.
+                                            </p>
+                                            <br><button class="btn btn-primary">Kupi</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapse6" aria-expanded="false"
-                                        aria-controls="collapse6" role="button">
+                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapse6"
+                                        aria-expanded="false" aria-controls="collapse6" role="button">
                                         <div class="part-img">
                                             <img src="assets/img/krcko.jpeg" alt="">
                                         </div>
                                         <div class="part-text">
                                             <h3>Krcko Oraščić balet</h3>
-                                            <span class="time"><i class="fas fa-clock"></i> 26.12.2023</span> <span class="location"><i class="fas fa-globe"></i> Lokacija: Narodno pozorište, Sarajevo</span>
+                                            <span class="time"><i class="fas fa-clock"></i> 26.12.2023</span> <span
+                                                class="location"><i class="fas fa-globe"></i> Lokacija: Narodno
+                                                pozorište, Sarajevo</span>
                                         </div>
                                     </div>
                                     <div id="collapse6" class="collapse" data-parent="#accordion2">
@@ -292,20 +341,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                            aria-labelledby="v-pills-messages-tab">
                             <div id="accordion3">
                                 <div class="card">
-                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="false"
-                                        aria-controls="collapse7" role="button">
+                                    <div class="card-header collapsed" data-toggle="collapse" data-target="#collapse7"
+                                        aria-expanded="false" aria-controls="collapse7" role="button">
                                         <div class="part-img">
                                             <img src="assets/img/sarzri.png" alt="">
                                         </div>
                                         <div class="part-text">
                                             <h3>Sarajevo - Zrinjski</h3>
-                                            <span class="time"><i class="fas fa-clock"></i> 18.12.2023</span> <span class="location"><i class="fas fa-globe"></i> Lokacija: Stadion Asim Ferhatović Hase, Sarajevo, BiH</span>
+                                            <span class="time"><i class="fas fa-clock"></i> 18.12.2023</span> <span
+                                                class="location"><i class="fas fa-globe"></i> Lokacija: Stadion Asim
+                                                Ferhatović Hase, Sarajevo, BiH</span>
                                         </div>
                                     </div>
-                            
+
                                     <div id="collapse7" class="collapse" data-parent="#accordion3">
                                         <div class="card-body">
                                             <p>Vrijeme: 18:00h</p><br>
@@ -315,12 +367,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                            
+                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                            aria-labelledby="v-pills-settings-tab">
+
                             <div id="accordion4">
-                           
-                               
-                             <p>Trenutno nema događaja u ovoj kategoriji</p>
+
+
+                                <p>Trenutno nema događaja u ovoj kategoriji</p>
                             </div>
 
                         </div>
@@ -363,9 +416,9 @@
     </div>
     countdown end -->
 
-  
-    
-  
+
+
+
 
     <!-- footer begin -->
     <div class="footer">
@@ -373,46 +426,14 @@
             <div class="row">
                 <div class="col-xl-5 col-lg-4 d-xl-flex d-lg-flex align-items-center">
                     <div class="logo">
-                        <a href="index-2.html"><img src="assets/img/logo.png" alt=""></a>
+                        <a href="index.html"><img src="assets/img/logo.png" alt=""></a>
                     </div>
                 </div>
-               <!-- <div class="col-xl-7 col-lg-8">
-                    <div class="footer-menu">
-                        <nav class="navbar navbar-expand-lg">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="about.html">About Us<span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="event.html">Event</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="gallery.html">Galerija</a>
-                                </li>
-                               <li class="nav-item">
-                                    <a class="nav-link" href="top-dj.html">Top DJ</a>
-                                </li> 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="schedule.html">Događaji</a>
-                                </li>
-                              <li class="nav-item">
-                                    <a class="nav-link" href="blog-details.html">Prijava</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="faq.html">Faq</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Kontakt</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
     <!-- footer end -->
-    
+
     <!-- jquery -->
     <script src="assets/js/jquery.js"></script>
     <!-- bootstrap -->
@@ -428,5 +449,5 @@
     <!-- main -->
     <script src="assets/js/main.js"></script>
 </body>
-    
+
 </html>
