@@ -86,8 +86,14 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="schedule.html">Događaji</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="loginLink">
                                         <a class="nav-link" href="login.html">Prijava</a>
+                                    </li>
+                                    <li class="nav-item" id="logoutLink" style="display: none;">
+                                        <a class="nav-link" href="login.html">Odjava</a>
+                                    </li>
+                                    <li class="nav-item" id="profileLink" style="display: none;">
+                                        <a class="nav-link" href="myProfile.html">Profil</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="faq.html">Pomoć</a>
@@ -95,13 +101,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="contact.html">Kontakt</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="myProfile.html">Profil</a>
-                                    </li>
                                 </ul>
                             </div>
                         </nav>
-
                     </div>
                 </div>
                 <p id="greeting" style="margin: 0; color: #fff; font-family: Poppins; text-align: right;"><strong> </strong></p>
@@ -834,13 +836,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    const loggedInUsername = sessionStorage.getItem('loggedInUsername');
-
-    if (loggedInUsername) {
-        document.getElementById('greeting').innerText = 'Zdravo, ' + loggedInUsername;
-    }
-});
-
+            const loggedInUsername = sessionStorage.getItem('loggedInUsername');
+            const loginLink = document.getElementById('loginLink');
+            const logoutLink = document.getElementById('logoutLink');
+            const profileLink = document.getElementById('profileLink');
+    
+            if (loggedInUsername) {
+                document.getElementById('greeting').innerText = 'Zdravo, ' + loggedInUsername;
+                loginLink.style.display = 'none';
+                logoutLink.style.display = 'block';
+                profileLink.style.display = 'block';
+            } else {
+                loginLink.style.display = 'block';
+                logoutLink.style.display = 'none';
+                profileLink.style.display = 'none';
+            }
+        });
     </script>
 </body>
 
